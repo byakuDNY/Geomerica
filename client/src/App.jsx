@@ -16,7 +16,7 @@ const App = () => {
           path="gameplay_selection"
           element={<GameplaySelection />}
         ></Route>
-        <Route path="gameplay" element={<Gameplay />}></Route>
+        <Route path="gameplay/:id/:name" element={<Gameplay />}></Route>
         <Route path="scoreboard" element={<Scoreboard />}></Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
