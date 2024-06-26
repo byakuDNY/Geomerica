@@ -54,11 +54,13 @@ const deleteCountry = async (req, res) => {
 //get 5 nonbres de paises
 const getFiveCountriesName = async (req, res) => {
   try {
+    console.log("getFiveCountriesName controller");
     const countries = await Country.aggregate([{ $sample: { size: 5 } }]);
+    console.log("Countries:", countries); // Log retrieved countries
     const countriesName = countries.map((country) => country.pais);
     res.status(200).json(countriesName);
   } catch (error) {
-    console.log("Error in getFiveCapitals controller", error);
+    console.log("Error in getFiveCountriesName controller", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -67,7 +69,7 @@ const getFiveCountriesName = async (req, res) => {
 const getFiveCapitals = async (req, res) => {
   try {
     const countries = await Country.aggregate([{ $sample: { size: 5 } }]);
-
+    console.log(countries);
     const capitals = countries.map((country) => country.capital);
     res.status(200).json(capitals);
   } catch (error) {
@@ -79,7 +81,7 @@ const getFiveCapitals = async (req, res) => {
 //get 5 banderas
 const getFiveBandera = async (req, res) => {
   try {
-    const countries = await Country.aggregate({ $sample: { size: 5 } });
+    const countries = await Country.aggregate([{ $sample: { size: 5 } }]);
 
     const banderas = countries.map((country) => country.bandera);
     res.status(200).json(banderas);
@@ -92,7 +94,7 @@ const getFiveBandera = async (req, res) => {
 //get 5 mapas de paises
 const getFiveMapa = async (req, res) => {
   try {
-    const countries = await Country.aggregate({ $sample: { size: 5 } });
+    const countries = await Country.aggregate([{ $sample: { size: 5 } }]);
 
     const mapasURL = countries.map((country) => country.mapa);
     res.status(200).json(mapasURL);
@@ -105,7 +107,7 @@ const getFiveMapa = async (req, res) => {
 //get 5 localizacion de paises
 const getFiveLocalizacion = async (req, res) => {
   try {
-    const countries = await Country.aggregate({ $sample: { size: 5 } });
+    const countries = await Country.aggregate([{ $sample: { size: 5 } }]);
 
     const localizacionURL = countries.map((country) => country.localizacion);
     res.status(200).json(localizacionURL);
