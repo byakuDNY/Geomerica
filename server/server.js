@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 
+import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import countryRoutes from "./routes/country.routes.js";
 import connectToMongoDB from "./db/connectToMongoDB.js";
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 5000;
 
 dotenv.config();
 
+app.use(cors());
 app.use(express.json()); // para analizar las solicitudes entrantes con cargas json (from req.body)
 app.use(express.urlencoded({ extended: false }));
 

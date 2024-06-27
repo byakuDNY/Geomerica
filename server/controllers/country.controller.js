@@ -69,7 +69,6 @@ const getFiveCountriesName = async (req, res) => {
 const getFiveCapitals = async (req, res) => {
   try {
     const countries = await Country.aggregate([{ $sample: { size: 5 } }]);
-    console.log(countries);
     const capitals = countries.map((country) => country.capital);
     res.status(200).json(capitals);
   } catch (error) {
