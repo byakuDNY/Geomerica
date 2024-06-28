@@ -5,29 +5,41 @@ import { useParams } from "react-router-dom";
 const OptionsToSelect = () => {
   let { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [options, setOptions] = useState([
-    "options1",
-    "options2",
-    "options3",
-    "options4",
-  ]);
+  const [options, setOptions] = useState([]);
 
-  // useEffect(() => {
-  //   getOptions();
-  // }, [id]);
+  useEffect(() => {
+    getOptions();
+  }, [id]);
 
-  // const getOptions = async () => {
-  //   setIsLoading(true);
-  //   try {
-  //     const response = await fetch(`http://localhost:5000/${id}`);
-  //     const data = await response.json();
-  //     setOptions(data.options || []);
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  //   setIsLoading(false);
-  // };
+  const getOptions = async () => {
+    setIsLoading(true);
+    try {
+      let response;
+      if (id === "1") {
+        response = await fetch(
+          "http://localhost:5000/api/country/cinco-capitals"
+        );
+      } else if (id === "2") {
+        response = await fetch(
+          "http://localhost:5000/api/country/cinco-banderas"
+        );
+      } else if (id === "3") {
+        response = await fetch("http://localhost:5000/api/country/cinco-mapas");
+      } else if (id === "4") {
+        response = await fetch(
+          "http://localhost:5000/api/country/cinco-localization"
+        );
+      } else {
+        throw new Error("Invalid id");
+      }
+      const data = await response.json();
+      console.log(data);
+      setOptions(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -36,14 +48,23 @@ const OptionsToSelect = () => {
       ) : (
         <div>
           {options.length > 0 ? (
-            options.map((option) => (
-              <button
-                key={option.id}
-                className="bg-transparent text-[#F3F3F3] border-2 rounded-lg px-4 py-2 text-2xl font-medium hover:bg-[#F3F3F3] hover:text-[#2c69da] hover:cursor-pointer"
-              >
-                {option}
-              </button>
-            ))
+            options.map((option, index) =>
+              id === "1" ? (
+                <button
+                  key={index}
+                  className="bg-transparent text-[#F3F3F3] border-2 rounded-lg px-4 py-2 text-2xl font-medium hover:bg-[#F3F3F3] hover:text-[#2c69da] hover:cursor-pointer"
+                >
+                  {option}
+                </button>
+              ) : (
+                <img
+                  key={index}
+                  src={option}
+                  alt="map"
+                  className="option-image"
+                />
+              )
+            )
           ) : (
             <h2>No options available</h2>
           )}

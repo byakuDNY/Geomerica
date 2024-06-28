@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const GameplaySelection = () => {
   const modes = [
-    { id: "1", name: "Modo 1: Adivina el Capital" },
-    { id: "2", name: "Modo 2: Adivina la Bandera" },
-    { id: "3", name: "Modo 3: Adivina el País según el Mapa del País" },
-    { id: "4", name: "Modo 4: Adivina el País según el Mapa del Región" },
+    { id: "1", name: "Modo 1 : Adivina el Capital" },
+    { id: "2", name: "Modo 2 : Adivina la Bandera" },
+    { id: "3", name: "Modo 3 : Adivina el País según el Mapa del País" },
+    { id: "4", name: "Modo 4 : Adivina el País según el Mapa del Región" },
   ];
 
   return (
@@ -24,7 +24,7 @@ const GameplaySelection = () => {
         <Link
           key={mode.id}
           to={`/gameplay/${mode.id}/${mode.name}`}
-          className="bg-transparent text-[#F3F3F3] border-2 rounded-lg px-4 py-2 text-2xl font-medium hover:bg-[#F3F3F3] hover:text-[#2c69da] hover:cursor-pointer"
+          className="bg-transparent text-[#F3F3F3] border-2 rounded-lg px-4 py-2 text-2xl font-medium hover:bg-[#F3F3F3] hover:text-[#2c69da] hover:cursor-pointer w-2/5"
         >
           {mode.name}
         </Link>
