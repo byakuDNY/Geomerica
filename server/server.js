@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 dotenv.config();
 
 const corsOptions = {
-  origin: "https://worldwise-eir.pages.dev/",
+  origin: "https://worldwise-eir.pages.dev",
 };
 app.use(cors(corsOptions));
 
@@ -23,8 +23,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/country", countryRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Hola Mundo");
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "*"); // Ensure headers are set before sending the response
   res.json({ message: "This is the response from the server" });
 });
 
