@@ -15,7 +15,6 @@ app.use();
 app.use(
   cors({
     origin: ["world-wise-ruddy-sigma.vercel.app"],
-    credentials: true,
   })
 );
 app.use(express.json());
