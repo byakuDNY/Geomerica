@@ -37,12 +37,9 @@ const OptionsToSelect = () => {
       if (!response.ok) {
         // Handle non-200 HTTP status codes
         const errorText = await response.text();
-        throw new Error(
-          `Error: ${response.status} ${response.statusText} - ${errorText}`
-        );
+        throw new Error(`Error: ${response.status} - ${errorText}`);
       }
 
-      // Try to parse the response as JSON
       const text = await response.text();
       let data;
       try {
@@ -55,6 +52,13 @@ const OptionsToSelect = () => {
       setOptions(data);
     } catch (error) {
       console.error(error);
+
+      // Handle specific error messages
+      if (error.message.includes("504")) {
+        console.error("The request timed out. Please try again later.");
+      } else {
+        console.error("An error occurred:", error.message);
+      }
     } finally {
       setIsLoading(false);
     }
