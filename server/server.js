@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: "https://worldwise-eir.pages.dev", // Removed trailing slash
+  origin: "*", // Removed trailing slash
   optionsSuccessStatus: 200, // Some legacy browsers choke on 204
 };
 
