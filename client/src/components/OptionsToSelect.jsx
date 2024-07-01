@@ -33,12 +33,30 @@ const OptionsToSelect = () => {
       } else {
         throw new Error("Invalid id");
       }
-      const data = await response.json();
+
+      if (!response.ok) {
+        // Handle non-200 HTTP status codes
+        const errorText = await response.text();
+        throw new Error(
+          `Error: ${response.status} ${response.statusText} - ${errorText}`
+        );
+      }
+
+      // Try to parse the response as JSON
+      const text = await response.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (jsonError) {
+        throw new Error(`Failed to parse JSON: ${text}`);
+      }
+
       console.log(data);
       setOptions(data);
-      setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
