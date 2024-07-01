@@ -14,7 +14,7 @@ app.use();
 
 app.use(
   cors({
-    origin: "world-wise-ruddy-sigma.vercel.app",
+    origin: ["world-wise-ruddy-sigma.vercel.app"],
     credentials: true,
   })
 );
