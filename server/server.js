@@ -11,7 +11,11 @@ const PORT = process.env.PORT || 5000;
 
 dotenv.config();
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://worldwise-eir.pages.dev/",
+};
+app.use(cors(corsOptions));
+
 app.use(express.json()); // para analizar las solicitudes entrantes con cargas json (from req.body)
 app.use(express.urlencoded({ extended: false }));
 
