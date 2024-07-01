@@ -22,12 +22,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/auth", authRoutes);
 app.use("/api/country", countryRoutes);
 
-/*
 app.get("/", (req, res) => {
-    //root route http://localhost:5000/
-    res.send("Hola Mundo")
+  res.send("Hola Mundo");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://worldwise-eir.pages.dev"
+  );
+  res.json({ message: "This is the response from the server" });
 });
-*/
 
 app.listen(PORT, () => {
   connectToMongoDB();
