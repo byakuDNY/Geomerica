@@ -24,10 +24,7 @@ app.use("/api/country", countryRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hola Mundo");
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://worldwise-eir.pages.dev"
-  );
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.json({ message: "This is the response from the server" });
 });
 
