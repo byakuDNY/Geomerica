@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+export const VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Homepage = () => {
   return (

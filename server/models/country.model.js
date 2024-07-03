@@ -10,10 +10,6 @@ const countrySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    continente: {
-      type: String,
-      required: true,
-    },
     bandera: {
       type: String,
     },

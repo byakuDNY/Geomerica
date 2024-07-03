@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { VITE_BACKEND_URL } from "../pages/Homepage";
 
 const OptionsToSelect = () => {
   let { id } = useParams();
@@ -17,27 +18,49 @@ const OptionsToSelect = () => {
       let response;
       if (id === "1") {
         response = await fetch(
-          "http://localhost:5000/api/country/cinco-capitals"
+          `${VITE_BACKEND_URL}/api/country/cinco-capitals`
         );
       } else if (id === "2") {
         response = await fetch(
-          "http://localhost:5000/api/country/cinco-banderas"
+          `${VITE_BACKEND_URL}/api/country/cinco-banderas`
         );
       } else if (id === "3") {
-        response = await fetch("http://localhost:5000/api/country/cinco-mapas");
+        response = await fetch(`${VITE_BACKEND_URL}/api/country/cinco-mapas`);
       } else if (id === "4") {
         response = await fetch(
-          "http://localhost:5000/api/country/cinco-localization"
+          `${VITE_BACKEND_URL}/api/country/cinco-localizacion`
         );
       } else {
         throw new Error("Invalid id");
       }
-      const data = await response.json();
+
+      if (!response.ok) {
+        // Handle non-200 HTTP status codes
+        const errorText = await response.text();
+        throw new Error(`Error: ${response.status} - ${errorText}`);
+      }
+
+      const text = await response.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (jsonError) {
+        throw new Error(`Failed to parse JSON: ${text}`);
+      }
+
       console.log(data);
       setOptions(data);
-      setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+
+      // Handle specific error messages
+      if (error.message.includes("504")) {
+        console.error("The request timed out. Please try again later.");
+      } else {
+        console.error("An error occurred:", error.message);
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
