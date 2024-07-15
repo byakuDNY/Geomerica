@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#252B41];
+  }
+}
+
+.header-curved {
+  border-radius: 0 0 40% 40%;
+}

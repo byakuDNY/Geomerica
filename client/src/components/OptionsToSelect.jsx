@@ -34,31 +34,11 @@ const OptionsToSelect = () => {
         throw new Error("Invalid id");
       }
 
-      if (!response.ok) {
-        // Handle non-200 HTTP status codes
-        const errorText = await response.text();
-        throw new Error(`Error: ${response.status} - ${errorText}`);
-      }
-
-      const text = await response.text();
-      let data;
-      try {
-        data = JSON.parse(text);
-      } catch (jsonError) {
-        throw new Error(`Failed to parse JSON: ${text}`);
-      }
-
+      const data = await response.json();
       console.log(data);
       setOptions(data);
     } catch (error) {
       console.error(error);
-
-      // Handle specific error messages
-      if (error.message.includes("504")) {
-        console.error("The request timed out. Please try again later.");
-      } else {
-        console.error("An error occurred:", error.message);
-      }
     } finally {
       setIsLoading(false);
     }
