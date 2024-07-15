@@ -51,67 +51,67 @@ const deleteCountry = async (req, res) => {
   }
 };
 
-//get 5 nonbres de paises
-const getFiveCountriesName = async (req, res) => {
+const getRandomCountry = async (req, res) => {
   try {
-    console.log("getFiveCountriesName controller");
-    const countries = await Country.aggregate([{ $sample: { size: 5 } }]);
-    console.log("Countries:", countries); // Log retrieved countries
-    const countriesName = countries.map((country) => country.pais);
-    res.status(200).json(countriesName);
+    const country = await Country.aggregate([{ $sample: { size: 1 } }]);
+    res.status(200).json(country);
   } catch (error) {
-    console.log("Error in getFiveCountriesName controller", error);
+    console.log("Error in getCountry controller", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
-//get 5 capitales
-const getFiveCapitals = async (req, res) => {
+const getFourCountriesAndCapitals = async (req, res) => {
   try {
-    const countries = await Country.aggregate([{ $sample: { size: 5 } }]);
-    const capitals = countries.map((country) => country.capital);
-    res.status(200).json(capitals);
+    const countries = await Country.aggregate([{ $sample: { size: 4 } }]);
+    const countriesAndCapitals = countries.map((country) => ({
+      pais: country.pais,
+      capital: country.capital,
+    }));
+    res.status(200).json(countriesAndCapitals);
   } catch (error) {
-    console.log("Error in getFiveCapitals controller", error);
+    console.log("Error in getFourCountriesAndCapitals controller", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+const getFourCountriesAndFlags = async (req, res) => {
+  try {
+    const countries = await Country.aggregate([{ $sample: { size: 4 } }]);
+    const countriesAndFlags = countries.map((country) => ({
+      pais: country.pais,
+      bandera: country.bandera,
+    }));
+    res.status(200).json(countriesAndFlags);
+  } catch (error) {
+    console.log("Error in getFourCountriesAndFlags controller", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
-//get 5 banderas
-const getFiveBandera = async (req, res) => {
+// const getFourCountriesAndMaps = async (req, res) => {
+//   try {
+//     const countries = await Country.aggregate([{ $sample: { size: 4 } }]);
+//     const countriesAndMaps = countries.map((country) => ({
+//       pais: country.pais,
+//       mapa: country.mapa,
+//     }));
+//     res.status(200).json(countriesAndMaps);
+//   } catch (error) {
+//     console.log("Error in getFourCountriesAndMaps controller", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };
+
+const getFourCountriesAndMapContinents = async (req, res) => {
   try {
-    const countries = await Country.aggregate([{ $sample: { size: 5 } }]);
-
-    const banderas = countries.map((country) => country.bandera);
-    res.status(200).json(banderas);
+    const countries = await Country.aggregate([{ $sample: { size: 4 } }]);
+    const countriesAndMapContinents = countries.map((country) => ({
+      pais: country.pais,
+      localizacion: country.localizacion,
+    }));
+    res.status(200).json(countriesAndMapContinents);
   } catch (error) {
-    console.log("Error in getFiveBandera controller", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
-//get 5 mapas de paises
-const getFiveMapa = async (req, res) => {
-  try {
-    const countries = await Country.aggregate([{ $sample: { size: 5 } }]);
-
-    const mapasURL = countries.map((country) => country.mapa);
-    res.status(200).json(mapasURL);
-  } catch (error) {
-    console.log("Error in getFiveMapa controller", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
-//get 5 localizacion de paises
-const getFiveLocalizacion = async (req, res) => {
-  try {
-    const countries = await Country.aggregate([{ $sample: { size: 5 } }]);
-
-    const localizacionURL = countries.map((country) => country.localizacion);
-    res.status(200).json(localizacionURL);
-  } catch (error) {
-    console.log("Error in getFiveLocalizacion controller", error);
+    console.log("Error in getFourCountriesAndMapContinents controller", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -119,11 +119,11 @@ const getFiveLocalizacion = async (req, res) => {
 export {
   getCountries,
   createCountry,
-  getFiveCapitals,
-  getFiveCountriesName,
-  getFiveBandera,
   getCountry,
   deleteCountry,
-  getFiveMapa,
-  getFiveLocalizacion,
+  getRandomCountry,
+  getFourCountriesAndCapitals,
+  getFourCountriesAndFlags,
+  // getFourCountriesAndMaps,
+  getFourCountriesAndMapContinents,
 };

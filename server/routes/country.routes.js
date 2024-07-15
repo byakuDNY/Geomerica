@@ -2,28 +2,28 @@ import express from "express";
 import {
   getCountries,
   createCountry,
-  getFiveCapitals,
-  getFiveCountriesName,
-  getFiveBandera,
   getCountry,
   deleteCountry,
-  getFiveLocalizacion,
-  getFiveMapa,
+  getRandomCountry,
+  getFourCountriesAndCapitals,
+  getFourCountriesAndFlags,
+  // getFourCountriesAndMaps,
+  getFourCountriesAndMapContinents,
 } from "../controllers/country.controller.js";
 
 const router = express.Router();
 
 router.get("/", getCountries);
 
-router.get("/cinco-nombre-paises", getFiveCountriesName);
+router.get("/random-country", getRandomCountry);
 
-router.get("/cinco-capitals", getFiveCapitals);
+router.get("/capitals", getFourCountriesAndCapitals);
 
-router.get("/cinco-banderas", getFiveBandera);
+router.get("/flags", getFourCountriesAndFlags);
 
-router.get("/cinco-mapas", getFiveMapa);
+// router.get("/maps", getFourCountriesAndMaps);
 
-router.get("/cinco-localizacion", getFiveLocalizacion);
+router.get("/maps-continents", getFourCountriesAndMapContinents);
 
 router.get("/:id", getCountry);
 
