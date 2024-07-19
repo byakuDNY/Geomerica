@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import questionMark from "../assets/questionMark.png";
 import { Link } from "react-router-dom";
 const GameplayNav = () => {
   let { name } = useParams();
