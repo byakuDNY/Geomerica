@@ -35,7 +35,7 @@ const getFlagsRanking = async (req, res) => {
 const getMapContinentsRanking = async (req, res) => {
   try {
     const mapContinentsRanking = await Ranking.find({
-      game_mode: "continente-mapas",
+      game_mode: "mapas",
     });
     res.status(200).json(mapContinentsRanking);
   } catch (error) {

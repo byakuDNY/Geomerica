@@ -16,6 +16,10 @@ export const signup = async (req, res) => {
   try {
     const { username, password, confirmPassword } = req.body;
 
+    if (!username || !password || !confirmPassword) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
     if (password !== confirmPassword) {
       return res.status(400).json({ error: "Password don't match" });
     }

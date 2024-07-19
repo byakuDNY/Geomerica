@@ -12,18 +12,18 @@ const getCountries = async (req, res) => {
 };
 
 //get solo un pais
-const getCountry = async (req, res) => {
-  try {
-    const country = await Country.findById(req.params.id);
-    if (!country) {
-      return res.status(404).json({ error: "Country not found" });
-    }
-    res.status(200).json(country);
-  } catch (error) {
-    console.log("Error in getCountry controller", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
+// const getCountry = async (req, res) => {
+//   try {
+//     const country = await Country.findById(req.params.id);
+//     if (!country) {
+//       return res.status(404).json({ error: "Country not found" });
+//     }
+//     res.status(200).json(country);
+//   } catch (error) {
+//     console.log("Error in getCountry controller", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };
 
 //crear un pais
 const createCountry = async (req, res) => {
@@ -51,79 +51,105 @@ const deleteCountry = async (req, res) => {
   }
 };
 
-const getRandomCountry = async (req, res) => {
-  try {
-    const country = await Country.aggregate([{ $sample: { size: 1 } }]);
-    res.status(200).json(country);
-  } catch (error) {
-    console.log("Error in getCountry controller", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
-const getFourCountriesAndCapitals = async (req, res) => {
-  try {
-    const countries = await Country.aggregate([{ $sample: { size: 4 } }]);
-    const countriesAndCapitals = countries.map((country) => ({
-      pais: country.pais,
-      capital: country.capital,
-    }));
-    res.status(200).json(countriesAndCapitals);
-  } catch (error) {
-    console.log("Error in getFourCountriesAndCapitals controller", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-const getFourCountriesAndFlags = async (req, res) => {
-  try {
-    const countries = await Country.aggregate([{ $sample: { size: 4 } }]);
-    const countriesAndFlags = countries.map((country) => ({
-      pais: country.pais,
-      bandera: country.bandera,
-    }));
-    res.status(200).json(countriesAndFlags);
-  } catch (error) {
-    console.log("Error in getFourCountriesAndFlags controller", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
-// const getFourCountriesAndMaps = async (req, res) => {
+// const getRandomCountry = async (req, res) => {
 //   try {
-//     const countries = await Country.aggregate([{ $sample: { size: 4 } }]);
-//     const countriesAndMaps = countries.map((country) => ({
-//       pais: country.pais,
-//       mapa: country.mapa,
-//     }));
-//     res.status(200).json(countriesAndMaps);
+//     const country = await Country.aggregate([{ $sample: { size: 1 } }]);
+//     res.status(200).json(country);
 //   } catch (error) {
-//     console.log("Error in getFourCountriesAndMaps controller", error);
+//     console.log("Error in getCountry controller", error);
 //     res.status(500).json({ error: "Internal Server Error" });
 //   }
 // };
 
-const getFourCountriesAndMapContinents = async (req, res) => {
+// const getFourCountriesAndCapitals = async (req, res) => {
+//   try {
+//     const countries = await Country.aggregate([{ $sample: { size: 4 } }]);
+//     const countriesAndCapitals = countries.map((country) => ({
+//       pais: country.pais,
+//       capital: country.capital,
+//     }));
+//     res.status(200).json(countriesAndCapitals);
+//   } catch (error) {
+//     console.log("Error in getFourCountriesAndCapitals controller", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };
+
+//get 40 paises y sus banderas
+const getFortyCountriesAndFlags = async (req, res) => {
   try {
-    const countries = await Country.aggregate([{ $sample: { size: 4 } }]);
-    const countriesAndMapContinents = countries.map((country) => ({
+    let countries = await Country.aggregate([{ $sample: { size: 40 } }]);
+
+    if (countries.length < 40) {
+      const remaining = 40 - countries.length;
+      const moreCountries = await Country.aggregate([
+        { $sample: { size: remaining } },
+      ]);
+
+      countries = countries.concat(moreCountries);
+    }
+
+    const countriesAndFlags = countries.map((country) => ({
       pais: country.pais,
-      localizacion: country.localizacion,
+      bandera: country.bandera,
     }));
-    res.status(200).json(countriesAndMapContinents);
+
+    res.status(200).json(countriesAndFlags);
   } catch (error) {
-    console.log("Error in getFourCountriesAndMapContinents controller", error);
+    console.log("Error in getCountriesAndFlags controller", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
+//get 40 paises y sus mapas
+const getFortyCountriesAndMaps = async (req, res) => {
+  try {
+    let countries = await Country.aggregate([{ $sample: { size: 40 } }]);
+
+    if (countries.length < 40) {
+      const remaining = 40 - countries.length;
+      const moreCountries = await Country.aggregate([
+        { $sample: { size: remaining } },
+      ]);
+
+      countries = countries.concat(moreCountries);
+    }
+
+    const countriesAndMaps = countries.map((country) => ({
+      pais: country.pais,
+      mapa: country.mapa,
+      localizacion: country.localizacion,
+    }));
+
+    res.status(200).json(countriesAndMaps);
+  } catch (error) {
+    console.log("Error in getCountriesAndMaps controller", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+// const getFourCountriesAndMapContinents = async (req, res) => {
+//   try {
+//     const countries = await Country.aggregate([{ $sample: { size: 4 } }]);
+//     const countriesAndMapContinents = countries.map((country) => ({
+//       pais: country.pais,
+//       localizacion: country.localizacion,
+//     }));
+//     res.status(200).json(countriesAndMapContinents);
+//   } catch (error) {
+//     console.log("Error in getFourCountriesAndMapContinents controller", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };
+
 export {
   getCountries,
   createCountry,
-  getCountry,
+  // getCountry,
   deleteCountry,
-  getRandomCountry,
-  getFourCountriesAndCapitals,
-  getFourCountriesAndFlags,
-  // getFourCountriesAndMaps,
-  getFourCountriesAndMapContinents,
+  // getRandomCountry,
+  // getFourCountriesAndCapitals,
+  getFortyCountriesAndFlags,
+  getFortyCountriesAndMaps,
+  // getFourCountriesAndMapContinents,
 };
