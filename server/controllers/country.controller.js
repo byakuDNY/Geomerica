@@ -142,6 +142,35 @@ const getFortyCountriesAndMaps = async (req, res) => {
 //   }
 // };
 
+const editCountryData = async (req, res) => {
+  try {
+    const countryId = req.params.id;
+
+    const country = await Country.findById(countryId);
+    if (!country) {
+      return res.status(404).json({ error: "Country not found" });
+    }
+
+    const updateData = {};
+    if (req.body.pais) updateData.pais = req.body.pais;
+    if (req.body.capital) updateData.capital = req.body.capital;
+    if (req.body.bandera) updateData.bandera = req.body.bandera;
+    if (req.body.mapa) updateData.mapa = req.body.mapa;
+    if (req.body.localizacion) updateData.localizacion = req.body.localizacion;
+
+    const updatedCountry = await Country.findByIdAndUpdate(
+      countryId,
+      { $set: updateData },
+      { new: true }
+    );
+
+    res.status(200).json(updatedCountry);
+  } catch (error) {
+    console.error("Error al editar pais", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 export {
   getCountries,
   createCountry,

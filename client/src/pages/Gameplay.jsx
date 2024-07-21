@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import FlagsGameplay from "../components/FlagsGameplay";
 import MapsGameplay from "../components/MapsGameplay";
+import BgImage from "../components/BgImage";
+import BgMusic from "../components/BgMusic";
+import homepage from "../assets/homepage.mp3";
 
 const Gameplay = () => {
   const VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -22,18 +25,15 @@ const Gameplay = () => {
       let response;
       if (id === "bandera") {
         response = await fetch(`${VITE_BACKEND_URL}/api/country/flags`);
-        const data = await response.json();
-        setCountries(data);
       } else if (id === "mapa") {
         response = await fetch(`${VITE_BACKEND_URL}/api/country/maps`);
-        const data = await response.json();
-        setCountries(data);
       } else {
         toast.error("ID Invalido");
         setIsLoading(false);
         return;
       }
-      console.log("Countries:", countries);
+      const data = await response.json();
+      setCountries(data);
     } catch (error) {
       toast.error("Error en la petición");
       console.error(error);
@@ -43,16 +43,14 @@ const Gameplay = () => {
   };
 
   return (
-    <div>
+    <div className="h-screen">
+      <BgImage />
+      <BgMusic bgMusic={homepage} pos={"right-0 bottom-0"} />
       <GameplayNav />
-      <div className="flex flex-col justify-center items-center gap-10 ">
-        {/* {isLoading && <h2>Loading...</h2>} */}
+      <div className="flex flex-col justify-center">
         {isLoading ? (
-          <h2>Loading...</h2>
-        ) : (
-          countries.map((country) => <p>{country.pais}</p>)
-        )}
-        {id === "bandera" ? (
+          <h2>Cargando...</h2>
+        ) : id === "bandera" ? (
           <FlagsGameplay countries={countries} />
         ) : (
           <MapsGameplay countries={countries} />

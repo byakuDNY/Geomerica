@@ -8,6 +8,7 @@ import Scoreboard from "./pages/Scoreboard";
 import { Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./AuthContext";
+import Ranking from "./pages/Ranking";
 
 const App = () => {
   const { authUser } = useAuthContext();
@@ -27,8 +28,18 @@ const App = () => {
           path="/signup"
           element={authUser ? <Navigate to="/" /> : <SignUp />}
         ></Route>
-        <Route path="gameplay/:id/:name" element={<Gameplay />}></Route>
-        <Route path="scoreboard" element={<Scoreboard />}></Route>
+        <Route
+          path="/gameplay/:id/:name"
+          element={authUser ? <Gameplay /> : <Navigate to="/" />}
+        ></Route>
+        <Route
+          path="/scoreboard/:game_mode"
+          element={authUser ? <Scoreboard /> : <Navigate to="/" />}
+        ></Route>
+        <Route
+          path="/ranking/:game_mode"
+          element={authUser ? <Ranking /> : <Navigate to="/" />}
+        ></Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Toaster />

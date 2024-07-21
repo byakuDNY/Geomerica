@@ -18,6 +18,6 @@ router.get("/flags", getFlagsRanking);
 
 router.get("/maps", getMapsRanking);
 
-router.get("/create", createRanking);
+router.post("/create", createRanking);
 
 export default router;
