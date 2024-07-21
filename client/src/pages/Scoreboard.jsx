@@ -4,8 +4,8 @@ import BgImage from "../components/BgImage";
 import { useAuthContext } from "../AuthContext";
 import { toast } from "react-hot-toast";
 import { useParams } from "react-router-dom";
-
 import { useLocation } from "react-router-dom";
+import { VITE_BACKEND_URL } from "./Homepage";
 
 const Scoreboard = () => {
   const location = useLocation();
@@ -29,7 +29,7 @@ const Scoreboard = () => {
 
   const saveScore = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/ranking/create", {
+      const response = await fetch(`${VITE_BACKEND_URL}/api/ranking/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

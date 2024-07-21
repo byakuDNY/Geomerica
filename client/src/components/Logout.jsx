@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useAuthContext } from "../AuthContext";
 import { toast } from "react-hot-toast";
+import { VITE_BACKEND_URL } from "../pages/Homepage";
 
 const Logout = () => {
   const { setAuthUser } = useAuthContext();
@@ -8,7 +9,7 @@ const Logout = () => {
   const logout = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/auth/logout", {
+      const response = await fetch(`${VITE_BACKEND_URL}/api/auth/logout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

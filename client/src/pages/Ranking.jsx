@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { VITE_BACKEND_URL } from "./Homepage";
 
 const Ranking = () => {
   const { game_mode } = useParams();
@@ -15,9 +16,9 @@ const Ranking = () => {
     try {
       let response;
       if (game_mode === "bandera") {
-        response = await fetch(`http://localhost:5000/api/ranking/flags`);
+        response = await fetch(`${VITE_BACKEND_URL}/api/ranking/flags`);
       } else if (game_mode === "mapa") {
-        response = await fetch(`http://localhost:5000/api/ranking/maps`);
+        response = await fetch(`${VITE_BACKEND_URL}/api/ranking/maps`);
       } else {
         toast.error("ID Invalido");
         return;

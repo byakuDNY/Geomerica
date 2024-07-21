@@ -8,9 +8,9 @@ import MapsGameplay from "../components/MapsGameplay";
 import BgImage from "../components/BgImage";
 import BgMusic from "../components/BgMusic";
 import homepage from "../assets/homepage.mp3";
+import { VITE_BACKEND_URL } from "./Homepage";
 
 const Gameplay = () => {
-  const VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
   let { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [countries, setCountries] = useState([]);
