@@ -12,18 +12,18 @@ const getCountries = async (req, res) => {
 };
 
 //get solo un pais
-// const getCountry = async (req, res) => {
-//   try {
-//     const country = await Country.findById(req.params.id);
-//     if (!country) {
-//       return res.status(404).json({ error: "Country not found" });
-//     }
-//     res.status(200).json(country);
-//   } catch (error) {
-//     console.log("Error in getCountry controller", error);
-//     res.status(500).json({ error: "Internal Server Error" });
-//   }
-// };
+const getCountry = async (req, res) => {
+  try {
+    const country = await Country.findById(req.params.id);
+    if (!country) {
+      return res.status(404).json({ error: "Country not found" });
+    }
+    res.status(200).json(country);
+  } catch (error) {
+    console.log("Error in getCountry controller", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 //crear un pais
 const createCountry = async (req, res) => {
@@ -174,11 +174,12 @@ const editCountryData = async (req, res) => {
 export {
   getCountries,
   createCountry,
-  // getCountry,
+  getCountry,
   deleteCountry,
   // getRandomCountry,
   // getFourCountriesAndCapitals,
   getFortyCountriesAndFlags,
   getFortyCountriesAndMaps,
   // getFourCountriesAndMapContinents,
+  editCountryData,
 };

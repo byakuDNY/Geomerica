@@ -2,13 +2,14 @@ import express from "express";
 import {
   getCountries,
   createCountry,
-  // getCountry,
+  getCountry,
   deleteCountry,
   // getRandomCountry,
   // getFourCountriesAndCapitals,
   getFortyCountriesAndFlags,
   getFortyCountriesAndMaps,
   // getFourCountriesAndMapContinents,
+  editCountryData,
 } from "../controllers/country.controller.js";
 
 const router = express.Router();
@@ -25,9 +26,11 @@ router.get("/maps", getFortyCountriesAndMaps);
 
 // router.get("/maps-continents", getCountriesAndFlags);
 
-// router.get("/:id", getCountry);
+router.get("/:id", getCountry);
 
 router.post("/", createCountry);
+
+router.put("/:id", editCountryData);
 
 router.delete("/:id", deleteCountry);
 

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useAuthContext } from "../AuthContext";
 import { toast } from "react-hot-toast";
 import { VITE_BACKEND_URL } from "../pages/Homepage";
+import logoutPNG from "../assets/logout.png";
 
 const Logout = () => {
   const { setAuthUser } = useAuthContext();
@@ -33,9 +34,9 @@ const Logout = () => {
     <div>
       <button
         onClick={logout}
-        className="bg-[#252B41] hover:bg-amber-600 text-white text-2xl font-extrabold py-2 px-4 rounded font-outline-2 focus:outline-white"
+        className=" hover:bg-gray-300 p-3 m-2 rounded-xl"
       >
-        Cerrar Sesíon
+        <img className="w-6 sm:w-12" src={logoutPNG} alt="" />
       </button>
     </div>
   );

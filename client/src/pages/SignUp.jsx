@@ -74,7 +74,7 @@ const SignUp = () => {
           Registro
         </h1>
         <div className="flex justify-center items-center flex-col">
-          <form onSubmit={handleSignUp} className="w-1/3 p-4 mt-10">
+          <form onSubmit={handleSignUp} className="sm:w-1/3 p-4 mt-10">
             <div className="mb-6">
               <label
                 className="block text-white font-outline-2 text-xl font-extrabold mb-2"

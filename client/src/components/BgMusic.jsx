@@ -16,7 +16,7 @@ const BgMusic = ({ bgMusic, pos }) => {
   };
 
   return (
-    <div className={`absolute p-4 ${pos}`}>
+    <div className={`absolute p-1 ${pos}`}>
       <audio loop autoPlay ref={audioRef} src={bgMusic}></audio>
       <button onClick={togglePlayPause}>
         <img className="" src={isPlaying ? volume : mute} alt="volume-icon" />
