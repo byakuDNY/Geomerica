@@ -8,6 +8,8 @@ import ModalGlossary from "../components/ModalGlossary";
 const Glossary = () => {
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedCountryId, setSelectedCountryId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     getCountries();
@@ -29,6 +31,12 @@ const Glossary = () => {
     }
     setIsLoading(false);
   };
+
+  const handleCountryClick = (id) => {
+    setSelectedCountryId(id);
+    setIsModalOpen(true);
+  };
+
   return (
     <div>
       {isLoading ? (
@@ -59,12 +67,25 @@ const Glossary = () => {
                 <tr key={index} className="border-b text-white">
                   <td className="px-6 py-4">{element.pais}</td>
                   <td className="px-6 py-4">{element.capital}</td>
-                  <ModalGlossary id={element._id} />
+                  <td className="px-6 py-4">
+                    <button
+                      onClick={() => handleCountryClick(element._id)}
+                      className="inline-block px-6 py-4 hover:text-blue-500 underline"
+                    >
+                      Ver más
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+      )}
+      {isModalOpen && selectedCountryId && (
+        <ModalGlossary
+          id={selectedCountryId}
+          onClose={() => setIsModalOpen(false)}
+        />
       )}
     </div>
   );
