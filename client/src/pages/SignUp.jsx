@@ -1,7 +1,7 @@
 import React from "react";
 import BgImage from "../components/BgImage";
 import BgMusic from "../components/BgMusic";
-import sound from "../assets/sound.mp3";
+import bgMusicAuth from "../assets/bg-music-auth.mp3";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -60,7 +60,8 @@ const SignUp = () => {
         toast.error(data.error);
       }
     } catch (error) {
-      toast.error("Algo salió mal, intenta de nuevo");
+      toast.error("Error en la petición");
+      console.log(error);
     }
     setLoading(false);
   };
@@ -68,7 +69,7 @@ const SignUp = () => {
   return (
     <div>
       <BgImage />
-      <BgMusic bgMusic={sound} />
+      <BgMusic bgMusic={bgMusicAuth} />
       <div>
         <h1 className="text-6xl text-center p-10 font-extrabold text-white font-outline-2">
           Registro
@@ -84,7 +85,7 @@ const SignUp = () => {
               </label>
               <div className="flex items-center text-gray-900 focus-within:text-gray-700">
                 <img
-                  src="user-regular.svg"
+                  src="user-icon.svg"
                   alt="user-icon"
                   className="absolute w-5 h-5"
                 />
@@ -109,7 +110,7 @@ const SignUp = () => {
               </label>
               <div className="flex items-center text-gray-900 focus-within:text-gray-700">
                 <img
-                  src="lock.svg"
+                  src="lock-icon.svg"
                   alt="user-icon"
                   className="absolute w-6 h-6"
                 />
@@ -134,7 +135,7 @@ const SignUp = () => {
               </label>
               <div className="flex items-center text-gray-900 focus-within:text-gray-700">
                 <img
-                  src="lock.svg"
+                  src="lock-icon.svg"
                   alt="user-icon"
                   className="absolute w-6 h-6"
                 />
@@ -163,7 +164,7 @@ const SignUp = () => {
           <div className="pt-5">
             <Link
               className="text-white text-xl font-extrabold py-2 px-4 hover:text-gray-200 font-outline-2 focus:outline-white"
-              to={"/"}
+              to={"/login"}
             >
               Iniciar Sesión
             </Link>

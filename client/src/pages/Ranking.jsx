@@ -47,14 +47,22 @@ const Ranking = () => {
         </Link>
       </div>
       <div className="flex flex-col sm:flex-row justify-evenly items-center gap-2 sm:gap-30">
-        <img className="w-16 sm:w-48" src="/trophy.svg" alt="" />
+        <img
+          className="w-16 sm:w-48"
+          src="/trophy-icon.svg"
+          alt="trophy-icon.svg"
+        />
         <h1 className="text-center text-4xl sm:text-6xl text-white">
           Clasificación:
           <p className=" font-extrabold font-outline-2">
             {game_mode.charAt(0).toUpperCase() + game_mode.slice(1)}
           </p>
         </h1>
-        <img className="w-16 sm:w-48" src="/trophy.svg" alt="" />
+        <img
+          className="w-16 sm:w-48"
+          src="/trophy-icon.svg"
+          alt="trophy-icon.svg"
+        />
       </div>
 
       <table className="table-auto mx-auto bg-transparent rounded-lg shadow-md">

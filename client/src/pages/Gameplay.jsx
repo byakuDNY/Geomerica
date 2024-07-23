@@ -7,8 +7,8 @@ import FlagsGameplay from "../components/FlagsGameplay";
 import MapsGameplay from "../components/MapsGameplay";
 import BgImage from "../components/BgImage";
 import BgMusic from "../components/BgMusic";
-import homepage from "../assets/homepage.mp3";
 import { VITE_BACKEND_URL } from "./Homepage";
+import bgMusicGameplay from "../assets/bg-music-gameplay.mp3";
 
 const Gameplay = () => {
   let { id } = useParams();
@@ -45,7 +45,7 @@ const Gameplay = () => {
   return (
     <div className="h-screen">
       <BgImage />
-      <BgMusic bgMusic={homepage} pos={"right-0 bottom-0"} />
+      <BgMusic bgMusic={bgMusicGameplay} pos={"right-0 bottom-0"} />
       <GameplayNav />
       <div className="flex flex-col justify-center">
         {isLoading ? (

@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect, forwardRef } from "react";
-import add from "../assets/add.png";
+import React, { useState, useEffect, forwardRef } from "react";
+import addBtn from "../assets/add-btn.png";
 import toast from "react-hot-toast";
 import { VITE_BACKEND_URL } from "../pages/Homepage";
 
@@ -79,7 +79,7 @@ const ModalAdmin = forwardRef(({ id, countries, setCountries }, ref) => {
           });
         }}
       >
-        <img src={add} alt="add-new-country-icon" className="w-20" />
+        <img src={addBtn} alt="add-button" className="w-20" />
       </button>
       <dialog
         ref={ref}

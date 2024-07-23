@@ -7,7 +7,7 @@ const GameplayNav = () => {
   return (
     <nav className="flex justify-between bg-amber-500 p-3">
       <div className="flex items-center gap-5 text-[#F3F3F3] px-4 py-2 text-2xl font-semibold ">
-        <img src="/question-mark.png" alt="question-mark-logo" />
+        <img src="/question-mark-icon.png" alt="question-mark-icon" />
         {name}
       </div>
       <Link

@@ -29,6 +29,11 @@ const Scoreboard = () => {
 
   const saveScore = async () => {
     try {
+      if (!authUser) {
+        toast("Inicia sesión para guardar tu puntaje");
+        return;
+      }
+
       const response = await fetch(`${VITE_BACKEND_URL}/api/ranking/create`, {
         method: "POST",
         headers: {
@@ -49,7 +54,7 @@ const Scoreboard = () => {
         toast.error(data.error);
       }
     } catch (error) {
-      toast.error("Algo salió mal, intenta de nuevo");
+      toast.error("Error en la petición");
       console.log(error);
     }
   };
@@ -58,7 +63,7 @@ const Scoreboard = () => {
     <div className="flex flex-col items-center">
       <BgImage />
       <div className="flex flex-col justify-center items-center bg-gray-200 w-4/5 sm:w-2/5 p-10 m-16">
-        <img className="w-48" src="/trophy.svg" alt="trophy-icon" />
+        <img className="w-48" src="/trophy-icon.svg" alt="trophy-icon" />
         <h1 className="text-3xl text-gray-800 py-2 px-4 font-extrabold">
           {evaluateRank(correctAnswers)}
         </h1>

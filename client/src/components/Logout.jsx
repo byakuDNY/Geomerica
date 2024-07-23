@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useAuthContext } from "../AuthContext";
 import { toast } from "react-hot-toast";
 import { VITE_BACKEND_URL } from "../pages/Homepage";
-import logoutPNG from "../assets/logout.png";
+import logoutBtn from "../assets/logout-btn.png";
 
 const Logout = () => {
   const { setAuthUser } = useAuthContext();
@@ -26,17 +26,17 @@ const Logout = () => {
         toast.error(data.error);
       }
     } catch (error) {
+      toast.error("Error en la petición");
       console.log(error);
-      toast.error("Algo salió mal");
     }
   };
   return (
     <div>
       <button
         onClick={logout}
-        className=" hover:bg-gray-300 p-3 m-10 rounded-xl"
+        className=" hover:bg-gray-300 p-3 m-5 rounded-xl"
       >
-        <img className="w-6 sm:w-12" src={logoutPNG} alt="" />
+        <img className="w-6 sm:w-12" src={logoutBtn} alt="logout-btn" />
       </button>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import volume from "../assets/volume.png";
-import mute from "../assets/mute.svg";
+import volumeOnBtn from "../assets/volume-on-btn.png";
+import volumeOffBtn from "../assets/volume-off-btn.svg";
 
 const BgMusic = ({ bgMusic, pos }) => {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -19,7 +19,10 @@ const BgMusic = ({ bgMusic, pos }) => {
     <div className={`absolute p-1 ${pos}`}>
       <audio loop autoPlay ref={audioRef} src={bgMusic}></audio>
       <button onClick={togglePlayPause}>
-        <img className="" src={isPlaying ? volume : mute} alt="volume-icon" />
+        <img
+          src={isPlaying ? volumeOnBtn : volumeOffBtn}
+          alt="volume-on-and-off-btn"
+        />
       </button>
     </div>
   );
