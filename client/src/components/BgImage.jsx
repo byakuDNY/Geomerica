@@ -1,6 +1,6 @@
 import React from "react";
-import bg from "../assets/bg.png";
-import login from "../assets/login.png";
+import bgImage1 from "../assets/bg-image1.png";
+import bgImage2 from "../assets/bg-image2.png";
 import { useState, useEffect } from "react";
 
 const BgImage = () => {
@@ -24,7 +24,7 @@ const BgImage = () => {
       className="absolute w-full h-full bg-cover opacity-30 duration-1000 -z-10"
       style={{
         boxShadow: "inset 0 0 0 1000px rgba(0, 0, 0, 0.5)",
-        backgroundImage: `url(${bg})`,
+        backgroundImage: `url(${bgImage1})`,
         backgroundPosition: `${backgroundPosition.x}% ${backgroundPosition.y}%`,
       }}
     ></div>

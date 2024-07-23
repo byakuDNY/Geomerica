@@ -16,6 +16,7 @@ const ModalGlossary = ({ id }) => {
       const data = await response.json();
       if (response.ok) {
         setCountryData(data);
+        console.log(data);
       } else {
         console.log(data.error);
       }

@@ -19,10 +19,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         {/* Las rutas */}
-        <Route
-          path="/"
-          element={authUser ? <Homepage /> : <Navigate to="/login" />}
-        ></Route>
+        <Route path="/" index element={<Homepage />}></Route>
         <Route
           path="/login"
           element={authUser ? <Navigate to="/" /> : <Login />}
@@ -31,26 +28,11 @@ const App = () => {
           path="/signup"
           element={authUser ? <Navigate to="/" /> : <SignUp />}
         ></Route>
-        <Route
-          path="/gameplay/:id/:name"
-          element={authUser ? <Gameplay /> : <Navigate to="/" />}
-        ></Route>
-        <Route
-          path="/scoreboard/:game_mode"
-          element={authUser ? <Scoreboard /> : <Navigate to="/" />}
-        ></Route>
-        <Route
-          path="/ranking/:game_mode"
-          element={authUser ? <Ranking /> : <Navigate to="/" />}
-        ></Route>
-        <Route
-          path="/glosario"
-          element={authUser ? <Glossary /> : <Navigate to="/" />}
-        ></Route>
-        <Route
-          path="/ayuda"
-          element={authUser ? <Help /> : <Navigate to="/" />}
-        ></Route>
+        <Route path="/gameplay/:id/:name" element={<Gameplay />}></Route>
+        <Route path="/scoreboard/:game_mode" element={<Scoreboard />}></Route>
+        <Route path="/ranking/:game_mode" element={<Ranking />}></Route>
+        <Route path="/glosario" element={<Glossary />}></Route>
+        <Route path="/ayuda" element={<Help />}></Route>
         <Route
           path="/herramienta-admin"
           element={
