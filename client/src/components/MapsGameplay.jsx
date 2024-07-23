@@ -85,20 +85,20 @@ const MapsGameplay = ({ countries }) => {
                 <img
                   src={correctCountry.mapa}
                   alt={`Map of ${correctCountry.pais}`}
-                  className="w-96 h-96"
+                  className="w-40 sm:w-72"
                 />
                 <img
                   src={correctCountry.localizacion}
                   alt={`Map of ${correctCountry.pais}`}
-                  className="w-96 h-96"
+                  className="w-[200px] sm:w-[500px]"
                 />
               </div>
-              <div className="grid grid-cols-2 sm:flex justify-center gap-5 p-5">
+              <div className="flex flex-col items-center sm:grid grid-cols-2 justify-items-center gap-5 p-5 pt-10">
                 {currentCountries.map((country, index) => (
                   <button
                     key={index}
                     onClick={() => handleOptionClick(country)}
-                    className={`bg-[#2C4058] text-white rounded-lg px-4 py-2 text-2xl font-medium hover:text-gray-300 hover:cursor-pointer sm:w-1/5 ${
+                    className={`bg-[#2C4058] text-white rounded-lg px-4 py-2 text-2xl font-medium hover:text-gray-300 hover:cursor-pointer w-10/12 sm:w-2/5 ${
                       selectedOption === country
                         ? country === correctCountry
                           ? "bg-green-500"

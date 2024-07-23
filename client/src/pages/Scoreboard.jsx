@@ -57,7 +57,7 @@ const Scoreboard = () => {
   return (
     <div className="flex flex-col items-center">
       <BgImage />
-      <div className="flex flex-col justify-center items-center bg-gray-200 w-2/5 p-10 m-16">
+      <div className="flex flex-col justify-center items-center bg-gray-200 w-4/5 sm:w-2/5 p-10 m-16">
         <img className="w-48" src="/trophy.svg" alt="trophy-icon" />
         <h1 className="text-3xl text-gray-800 py-2 px-4 font-extrabold">
           {evaluateRank(correctAnswers)}

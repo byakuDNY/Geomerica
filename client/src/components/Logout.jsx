@@ -34,7 +34,7 @@ const Logout = () => {
     <div>
       <button
         onClick={logout}
-        className=" hover:bg-gray-300 p-3 m-2 rounded-xl"
+        className=" hover:bg-gray-300 p-3 m-10 rounded-xl"
       >
         <img className="w-6 sm:w-12" src={logoutPNG} alt="" />
       </button>

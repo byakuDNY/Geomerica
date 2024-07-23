@@ -41,20 +41,20 @@ const Ranking = () => {
       <div className="pt-5">
         <Link
           to="/"
-          className="bg-amber-500 hover:bg-amber-600 text-white text-2xl font-extrabold py-2 px-4 rounded font-outline-2 focus:outline-white"
+          className="bg-amber-500 hover:bg-amber-600 text-white text-md sm:text-2xl font-extrabold py-2 px-4 rounded font-outline-2 focus:outline-white fixed top-0 right-0 m-5"
         >
           Volver al Inicio
         </Link>
       </div>
-      <div className="flex justify-evenly items-center gap-60 p-10 ">
-        <img className="w-48" src="/trophy.svg" alt="" />
-        <h1 className="text-center text-7xl text-white">
+      <div className="flex flex-col sm:flex-row justify-evenly items-center gap-2 sm:gap-30">
+        <img className="w-16 sm:w-48" src="/trophy.svg" alt="" />
+        <h1 className="text-center text-4xl sm:text-6xl text-white">
           Clasificación:
-          <span className=" font-extrabold font-outline-2">
+          <p className=" font-extrabold font-outline-2">
             {game_mode.charAt(0).toUpperCase() + game_mode.slice(1)}
-          </span>
+          </p>
         </h1>
-        <img className="w-48" src="/trophy.svg" alt="" />
+        <img className="w-16 sm:w-48" src="/trophy.svg" alt="" />
       </div>
 
       <table className="table-auto mx-auto bg-transparent rounded-lg shadow-md">

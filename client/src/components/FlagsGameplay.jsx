@@ -81,19 +81,19 @@ const FlagsGameplay = ({ countries }) => {
           </h2>
           {correctCountry && (
             <div className="">
-              <div className="flex justify-center">
+              <div className="flex justify-center py-6">
                 <img
                   src={correctCountry.bandera}
                   alt={`Map of ${correctCountry.pais}`}
-                  className="w-96"
+                  className="sm:w-96"
                 />
               </div>
-              <div className="grid grid-cols-2 justify-items-center gap-10 p-5 pt-10">
+              <div className="flex flex-col items-center sm:grid grid-cols-2 justify-items-center gap-5 p-5 pt-10">
                 {currentCountries.map((country, index) => (
                   <button
                     key={index}
                     onClick={() => handleOptionClick(country)}
-                    className={`bg-[#2C4058] text-white rounded-lg px-4 py-2 text-2xl font-medium hover:text-gray-300 hover:cursor-pointer w-3/5 ${
+                    className={`bg-[#2C4058] text-white rounded-lg px-4 py-2 text-2xl font-medium hover:text-gray-300 hover:cursor-pointer w-10/12 sm:w-2/5 ${
                       selectedOption === country
                         ? country === correctCountry
                           ? "bg-green-500"
@@ -106,7 +106,7 @@ const FlagsGameplay = ({ countries }) => {
                   </button>
                 ))}
               </div>
-              <div className="flex justify-center">
+              <div className="flex justify-center pt-10">
                 <button
                   className="bg-amber-500 hover:bg-amber-600 text-white text-2xl font-extrabold w-36 py-2 px-4 rounded font-outline-2 focus:outline-white"
                   onClick={nextRound}

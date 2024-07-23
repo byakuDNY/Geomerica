@@ -27,7 +27,7 @@ const Homepage = () => {
       <BgMusic bgMusic={homepage} />
       <header className="flex justify-between items-center bg-amber-500 p-5 pt-0.5 header-curved">
         <img className="w-20 sm:w-36" src="Animation.gif" alt="" />
-        <h1 className="font-extralight text-[#F3F3F3] text-3xl lg:text-6xl stroke-blue-700 stroke-2">
+        <h1 className="font-extralight text-[#F3F3F3] text-3xl sm:text-6xl stroke-blue-700 stroke-2">
           Geomérica
         </h1>
         <Logout />
