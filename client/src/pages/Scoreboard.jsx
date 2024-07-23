@@ -49,7 +49,7 @@ const Scoreboard = () => {
       const data = await response.json();
       console.log(data);
       if (response.ok) {
-        toast.success(`Puntaje guardado`);
+        toast.success(`Puntaje guardado ${correctAnswers} / 10`);
       } else {
         toast.error(data.error);
       }
