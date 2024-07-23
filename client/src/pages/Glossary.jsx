@@ -30,34 +30,42 @@ const Glossary = () => {
     setIsLoading(false);
   };
   return (
-    <div className="bg-[#252b41] flex flex-col justify-center items-center">
-      <div className="fixed right-0 top-0 p-5">
-        <Link
-          to={"/"}
-          className="flex justify-center w-10 h-10 font-extrabold text-3xl text-white rounded-full bg-amber-500 hover:text-red-500 hover:bg-white"
-        >
-          &times;
-        </Link>
-      </div>
-      <h1 className="text-center text-7xl text-white p-10">Glosario</h1>
+    <div>
+      {isLoading ? (
+        <div className="h-screen bg-[#252B41] text-white flex justify-center items-center">
+          Cargando...
+        </div>
+      ) : (
+        <div className="bg-[#252b41] flex flex-col justify-center items-center">
+          <div className="fixed right-0 top-0 p-5">
+            <Link
+              to={"/"}
+              className="flex justify-center w-10 h-10 font-extrabold text-3xl text-white rounded-full bg-amber-500 hover:text-red-500 hover:bg-white"
+            >
+              &times;
+            </Link>
+          </div>
+          <h1 className="text-center text-7xl text-white p-10">Glosario</h1>
 
-      <table className="table-auto mx-auto bg-transparent rounded-lg shadow-md">
-        <thead className="text-gray-300 border-b text-left">
-          <tr>
-            <th className="px-6 py-3">País</th>
-            <th className="px-6 py-3">Capital</th>
-          </tr>
-        </thead>
-        <tbody>
-          {countries.map((element, index) => (
-            <tr key={index} className="border-b text-white">
-              <td className="px-6 py-4">{element.pais}</td>
-              <td className="px-6 py-4">{element.capital}</td>
-              <ModalGlossary id={element._id} />
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <table className="table-auto mx-auto bg-transparent rounded-lg shadow-md">
+            <thead className="text-gray-300 border-b text-left">
+              <tr>
+                <th className="px-6 py-3">País</th>
+                <th className="px-6 py-3">Capital</th>
+              </tr>
+            </thead>
+            <tbody>
+              {countries.map((element, index) => (
+                <tr key={index} className="border-b text-white">
+                  <td className="px-6 py-4">{element.pais}</td>
+                  <td className="px-6 py-4">{element.capital}</td>
+                  <ModalGlossary id={element._id} />
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
